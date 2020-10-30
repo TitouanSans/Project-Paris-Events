@@ -10,18 +10,25 @@
 <body>
     <header class="fixed">
         <nav>
-            <a href="/" aria-expanded="false">Accueil</a> 
-            <a href="recherche.html">Liste des événements</a> 
+            <a href="index.html">Accueil</a> 
+            <a href="/">Liste des événements</a> 
             <a href="fav.html">Favoris</a> 
         </nav>
     </header>
 
     <main>
-        <h1>Bienvenue sur Paris Events</h1>
-        <p>Cherchez facilement et rapidement les prochains événements sur Paris.</p>
+        <h1>Chercher tous les événements à Paris</h1>
 
-        <h2>Actualité</h2>
-        <p>Le dernier evénements publié :</p>
+        <form>
+            <div>
+                <label>Titre : </label>
+                <input type='text' placeholder="exemple = Thêatre"></input>
+            </div>
+
+            <input type='submit' value='Rechercher'></input>
+        </form>
+
+        <h2>Résultat(s)</h2>
 
         <section class="flex" id="event">
         </section>
