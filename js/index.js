@@ -21,10 +21,12 @@ jQuery.ajax({
     for (let i = 0; i < 3; i++) {
         $('#new_events').append(`
             <article>
-                <img src="${results[i].record.fields.cover_url}" class="eventsCov"></img>
-                <h2>${results[i].record.fields.title}</h2>
-                <p>${results[i].record.fields.date_description}</p>
-                <p>${results[i].record.fields.lead_text}</p>
+                <div id="${results[i].record.id}, eventID">
+                    <img src="${results[i].record.fields.cover_url}" class="eventsCov"></img>
+                    <h2>${results[i].record.fields.title}</h2>
+                    <p>${results[i].record.fields.date_description}</p>
+                    <p>${results[i].record.fields.lead_text}</p>
+                </div>
                 <a><button class="btnFav">Favoris</button></a>
             </article>
         `);
@@ -74,3 +76,12 @@ function onSubmit(url) {
         }
     })
 };
+
+$('#eventID').on('click', function (e) {
+    e.preventDefault();
+    let id = $('#eventID').id;
+    let url = `https://opendata.paris.fr/api/v2/catalog/datasets/que-faire-a-paris-/records?search=${id}`
+
+    console.log(id);
+    console.log(url);
+});
