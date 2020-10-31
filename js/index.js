@@ -74,14 +74,3 @@ function onSubmit(url) {
         }
     })
 };
-
-$('.unchecked').on('click', function (e) {
-    e.preventDefault();
-    $('.unchecked').removeClass("unchecked").addClass("checked");
-    console.log("CHECKED");
-});
-$('.checked').on('click', function (e) {
-    e.preventDefault();
-    $('.checked').removeClass("checked").addClass("unchecked");
-    console.log("UNCHECKED");
-});
