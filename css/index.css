@@ -48,7 +48,6 @@ img {
 }
 
 .btnFav {
-    background-color: rgb(219, 98, 98);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -56,4 +55,11 @@ img {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.unchecked {
+    background-color: rgb(219, 98, 98);
+}
+.checked {
+    background-color: rgb(122, 219, 98);
 }

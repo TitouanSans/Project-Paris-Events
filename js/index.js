@@ -19,7 +19,7 @@ jQuery.ajax({
     console.log(results);
 
     for (let i = 0; i < 3; i++) {
-        $('#event').append(`
+        $('#new_events').append(`
             <article>
                 <img src="${results[i].record.fields.cover_url}" class="eventsCov"></img>
                 <h2>${results[i].record.fields.title}</h2>
@@ -46,18 +46,42 @@ function onSubmit(url) {
         console.log(results);
         console.log(results.length);
 
-        for (let i = 0; i < results.length; i++) {
-            $('#events').append(`
-                <article>
-                    <img src="${results[i].record.fields.cover_url}" class="eventsCov"></img>
-                    <h2>${results[i].record.fields.title}</h2>
-                    <p>${results[i].record.fields.date_description}</p>
-                    <p>${results[i].record.fields.lead_text}</p>
-                    <a><button class="btnFav">Favoris</button></a>
-                </article>
-            `);
-    
-        };
+        if (results.length > 0) {
+            for (let i = 0; i < results.length; i++) {
+                $('#resultMsg').empty();
+                $('#resultMsg').append(
+                    `Résultat(s)`
+                );
 
+                $('#events').append(`
+                    <article>
+                        <a href="event.html">
+                            <img src="${results[i].record.fields.cover_url}" class="eventsCov"></img>
+                            <h2>${results[i].record.fields.title}</h2>
+                            <p>${results[i].record.fields.date_description}</p>
+                            <p>${results[i].record.fields.lead_text}</p>
+                        </a>
+                        <a><button class="btnFav">Favoris</button></a>
+                    </article>
+                `);
+        
+            };
+        } else {
+            $('#resultMsg').empty();
+            $('#resultMsg').append(
+                `Aucun résultat, essayez d'autres mots-clés.`
+            );
+        }
     })
-}
+};
+
+$('.unchecked').on('click', function (e) {
+    e.preventDefault();
+    $('.unchecked').removeClass("unchecked").addClass("checked");
+    console.log("CHECKED");
+});
+$('.checked').on('click', function (e) {
+    e.preventDefault();
+    $('.checked').removeClass("checked").addClass("unchecked");
+    console.log("UNCHECKED");
+});
