@@ -131,11 +131,11 @@ function detailsEvent(id) {
                     <p>${results.address_stree}</p>
                     <p>${results.address_zipcode} ${results.address_city}</p>
                     <h2>Contact</h2>
-                    <a href="${results.contact_url}" target="blank">${results.contact_url}</a>
-                    <p>${results.contact_phone}</p>
-                    <p>${results.contact_mail}</p>
-                    <a href="${results.contact_facebook}" target="blank">${results.contact_facebook}</a>
-                    <a href="${results.contact_twitter}" target="blank">${results.contact_twitter}</a>
+                    <i class="fas fa-home"></i> <a href="${results.contact_url}" target="blank">${results.contact_url}</a>
+                    <p><i class="fas fa-phone-alt"></i> ${results.contact_phone}</p>
+                    <p><i class="fas fa-envelope"></i> ${results.contact_mail}</p>
+                    <a href="${results.contact_facebook}" target="blank"><i class="fab fa-facebook-square"></i> ${results.contact_facebook}</a>
+                    <br><a href="${results.contact_twitter}" target="blank"><i class="fab fa-twitter"></i> ${results.contact_twitter}</a>
                 </section>
             </article>
         `);
