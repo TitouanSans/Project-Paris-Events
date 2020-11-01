@@ -1,8 +1,10 @@
 # Project-Paris-Events
 Projet rattrapage EM.
 
-Install Jquery in the project folder with :
+This project use Jquery, you don't need to install it in the project folder.
 
-### `npm install jquery`
+Just open `index.html`.
 
-And open `index.html`.
+If you have problems with Jquery, reinstall it with the command :
+
+### `npm i jquery`
