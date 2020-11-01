@@ -1,7 +1,7 @@
 
 const favStorage = localStorage;
 let favEvents = [];
-console.log(favStorage);
+console.log(favEvents);
 
 // IMPLEMENTATION DU TERME RECHERCHE DANS UN URL PERSONNALISE
 $('#submit').on('click', function (e) {
@@ -23,7 +23,7 @@ jQuery.ajax({
     console.log(results);
 
     for (let i = 0; i < 5; i++) {
-        $('#new_events').append(`
+        $('#newEvents').append(`
             <article>
                 <div id="${results[i].record.id}" onclick="detailsEvent(id)">
                     <img src="${results[i].record.fields.cover_url}" class="eventsCov"></img>
@@ -31,25 +31,13 @@ jQuery.ajax({
                     <p>${results[i].record.fields.date_description}</p>
                     <p>${results[i].record.fields.lead_text}</p>
                 </div>
-                <button class="unfav btnFav" onclick="favClick(id)">Favoris</button>
+                <button class="btnUnfav" onclick="addFav(${results[i].record})">Favoris</button>
             </article>
         `);
         
     };
 
 });
-
-function favClick(result) {
-    console.log(result);
-    if ($(`#btnFav`).attr('class') === 'unfav') {
-        addFav(result);
-        setFav(result);
-    } else if ($(`#btnFav`).attr('class') === 'fav') {
-        setUnfav(result);
-        delFav(favEvents, result);
-    }
-};
-
 
 // AFFICHAGE DES EVENEMENTS CORRESPONDANTS AUX TERMES DANS LA RECHERCHE
 function onSubmit(url) {
@@ -79,7 +67,7 @@ function onSubmit(url) {
                             <p>${results[i].record.fields.date_description}</p>
                             <p>${results[i].record.fields.lead_text}</p>
                         </div>
-                        <button class="unfav btnFav" onclick="favClick(id)">Favoris</button>
+                        <button class="btnUnfav" onclick="addFav(${results[i].record})">Favoris</button>
                     </article>
                 `);
         
@@ -98,7 +86,7 @@ function onSubmit(url) {
 function detailsEvent(id) {
 
     $('#page_title').empty();
-    $('#new_events').empty();
+    $('#newEvents').empty();
     $('#events').empty();
 
     $.ajax({
@@ -107,7 +95,7 @@ function detailsEvent(id) {
     }).then((result) => {
 
         const results = result.record.fields;
-        
+
         $('#page_title').append(`
             <article class="flexDetails artDetails">
             
@@ -117,7 +105,7 @@ function detailsEvent(id) {
                     <img class="imgDetails" src="${results.cover_url}"></img>
                     <h2>${results.lead_text}</h2>
                     <p>${results.description}</p>
-                    <button class="unfav btnFav">Favoris</button>
+                    <button class="btnUnfav">Favoris</button>
                 </section>
 
                 <section class="secDetails">
@@ -139,8 +127,53 @@ function detailsEvent(id) {
                 </section>
             </article>
         `);
+
+        // ERREUR EN CAS DE VALEUR INEXISTANTE
+        // if (document.querySelectorAll('p').innerHTML = 'null') {
+        //     document.querySelectorAll('p').innerHTML = '';
+        // } else if (document.querySelectorAll('p').innerHTML = 'undefined') {
+        //     document.querySelectorAll('p').innerHTML = '';
+        // }
+
     })
 };
+
+if (favStorage.getItem('favoris')) {
+
+    if (JSON.parse(favStorage.favoris).length > 0) {
+
+        favEvents = JSON.parse(favStorage.getItem('favoris'));
+        $.each(favEvents, function (index, fav) {
+            $('#favEvents').append(`
+                <article class='track'>
+                    <div id="${fav.id}" onclick="detailsEvent(id)">
+                        <img src="${fav.fields.cover_url}" class="eventsCov"></img>
+                        <h2>${fav.fields.title}</h2>
+                        <p>${fav.fields.date_description}</p>
+                        <p>${fav.fields.lead_text}</p>
+                    </div>
+                    <button class="btnUnfav" onclick="addFav(${fav.id})">Favoris</button>
+                </article>`
+            )
+
+        })
+
+    } else {
+        $('#favEvents').append(
+            `<h2>Vous n'avez aucun favoris</h2>`
+        )
+    }
+
+} else {
+    $('#favEvents').html(`<h2>Vous n'avez aucun favoris</h2>`)
+}
+
+function addFav(result) {
+    console.log(result);
+
+    favEvents.push(result);
+    favStorage.setItem('favoris', JSON.stringify(favEvents));
+}
 
 // function addFav(result) {
 
@@ -173,3 +206,4 @@ function detailsEvent(id) {
 //     $(`#${result.id}`).html('<i class="fas fa-plus fa-lg">');
 //     $(`#${result.id}`).removeClass('fav').addClass('unfav');
 // }
+

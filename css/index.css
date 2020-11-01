@@ -73,7 +73,8 @@ img {
 /***BUTTON***/
 /************/
 
-.btnFav {
+.btnUnfav {
+    background-color: rgb(219, 98, 98);
     font-size: 16px;
     color: white;
     padding: 15px 32px;
@@ -85,12 +86,17 @@ img {
     display: inline-block;
 }
 
-.unfav {
-    background-color: rgb(219, 98, 98);
-}
-
-.fav {
+.btnFav {
     background-color: rgb(98, 120, 219);
+    font-size: 16px;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 10px;
+    border: none;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btnSearch {
