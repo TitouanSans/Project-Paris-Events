@@ -22,6 +22,7 @@ jQuery.ajax({
     const results = result.records;
     console.log(results);
 
+    // AFFICHER 5 EVENEMENTS MAX
     for (let i = 0; i < 5; i++) {
         $('#newEvents').append(`
             <article>
@@ -138,6 +139,8 @@ function detailsEvent(id) {
     })
 };
 
+//[EN COURS]
+// AFFICHAGE DES FAVORIS
 if (favStorage.getItem('favoris')) {
 
     if (JSON.parse(favStorage.favoris).length > 0) {
@@ -174,36 +177,4 @@ function addFav(result) {
     favEvents.push(result);
     favStorage.setItem('favoris', JSON.stringify(favEvents));
 }
-
-// function addFav(result) {
-
-//     if ($(`#${result.id}`).attr('class') === 'unfav') {
-//         favEvents.push(result);
-//         favStorage.setItem('favoris', JSON.stringify(favEvents));
-//     }
-// }
-
-// function delFav(favEvents, result) {
-
-//     let index;
-
-//     for (let i = 0; i < favEvents.length; i++) {
-//         if (favEvents[i].id === result.id) {
-//             index = i
-//         }
-//     }
-//     favEvents.splice(index, 1);
-//     favStorage.setItem('favoris', JSON.stringify(favEvents));
-// }
-
-// function setFav(result) {
-//     $(`#${result.id}`).empty();
-//     $(`#${result.id}`).removeClass('unfav').addClass('fav');
-// }
-
-// function setUnfav(result) {
-//     $(`#${result.id}`).empty();
-//     $(`#${result.id}`).html('<i class="fas fa-plus fa-lg">');
-//     $(`#${result.id}`).removeClass('fav').addClass('unfav');
-// }
 
