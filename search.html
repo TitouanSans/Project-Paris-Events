@@ -17,18 +17,20 @@
     </header>
 
     <main>
-        <h1>Chercher tous les événements à Paris</h1>
+        <header id="page_title">
+            <h1>Chercher tous les événements à Paris</h1>
 
-        <form>
-            <div>
-                <label>Titre : </label>
-                <input type='search' id="title" placeholder="exemple = Thêatre"></input>
-            </div>
+            <form>
+                <div>
+                    <label>Titre : </label>
+                    <input type='search' id="title" placeholder="exemple = Thêatre"></input>
+                </div>
 
-            <input type='submit' id="submit" value='search'></input>
-        </form>
+                <input type='submit' id="submit" value='Chercher' class="btnSearch"></input>
+            </form>
 
-        <h2 id="resultMsg"></h2>
+            <h2 id="resultMsg"></h2>
+        </header>
 
         <section class="flex" id="events">
         </section>
